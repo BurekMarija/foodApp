@@ -17,6 +17,7 @@ class CartController extends GetxController{
     if(_items.containsKey(product.id!)){
       _items.update(product.id!, (value){
         totalQuantitiy=value.quantity!+quantity;
+
         return CartModel(
           id:value.id,
           name:value.name,
@@ -25,6 +26,7 @@ class CartController extends GetxController{
           quantity:value.quantity!+quantity,
           isExist:true,
           time:DateTime.now().toString(),
+          product: product,
         );
       } );
       if(totalQuantitiy<=0){
@@ -44,6 +46,7 @@ class CartController extends GetxController{
             quantity:quantity,
             isExist:true,
             time:DateTime.now().toString(),
+            product: product,
           );}
         );
       }else{
@@ -52,9 +55,8 @@ class CartController extends GetxController{
           colorText: Colors.white,
         );
       }
-
-
     }
+    update();
 
   }
 
